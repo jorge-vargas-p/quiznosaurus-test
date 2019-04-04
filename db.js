@@ -1,16 +1,21 @@
 const environment = process.env.NODE_ENV || 'development'
 const config = require('./knexfile')[environment]
-const connection = require('knex')(config)
+const database = require('knex')(config)
+
+function getDinosaurs(db = database) {
+  console.log("All dinosaurs: " + db('dinosaurs').select())
+  return db('dinosaurs').select()
+}
+
+function getDinosaur(id, db = database) {
+  console.log("The dinosaur we want: ", db('dinosaurs').where('id', id).first())
+  return db('dinosaurs').where('id', id).first()
+}
+
+getDinosaurs()
+getDinosaur(1)
 
 module.exports = {
-  getUser: getUser,
-  getUsers: getUsers
-}
-
-function getUsers (db = connection) {
-  return db('users').select()
-}
-
-function getUser (id, db = connection) {
-  return db('users').where('id', id).first()
+  getDinosaurs,
+  getDinosaur
 }
