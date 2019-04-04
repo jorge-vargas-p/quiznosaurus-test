@@ -5,10 +5,10 @@ exports.seed = function(knex, Promise) {
     .then(function () {
       // Inserts seed entries
       return knex('attributes').insert([
-        {id: 1, favourite_colour: 'red',favourite_food:'meats',favourite_activity:'hunting',favourite_place:'USA',personality_type:'angry',dinosaur_id:1},
-        {id: 2, favourite_colour: 'blue',favourite_food:'plants',favourite_activity:'stomping',favourite_place:'Canada',personality_type:'humble',dinosaur_id:2},
-        {id: 3, favourite_colour: 'green',favourite_food:'leaves',favourite_activity:'eating',favourite_place:'Africa',personality_type:'chill',dinosaur_id:3},
-        {id: 4, favourite_colour: 'purple',favourite_food:'lollies',favourite_activity:'singing',favourite_place:'school',personality_type:'happy',dinosaur_id:4}
+        {id: 1, favourite_colour: 'red',favourite_food:'fried chicken',favourite_activity:'playing sports',favourite_place:'busy city',personality_type:'hyper',dinosaur_id:1},
+        {id: 2, favourite_colour: 'blue',favourite_food:'sushi',favourite_activity:'watching tv',favourite_place:'bontanicla garderns',personality_type:'cool',dinosaur_id:2},
+        {id: 3, favourite_colour: 'pink',favourite_food:'apple pie',favourite_activity:'making art',favourite_place:'up on a hill so I can see the view',personality_type:'kind',dinosaur_id:3},
+        {id: 4, favourite_colour: 'purple',favourite_food:'chocolate',favourite_activity:'hanging out with friends',favourite_place:'back yard',personality_type:'fun',dinosaur_id:4}
       ]);
     });
 };
