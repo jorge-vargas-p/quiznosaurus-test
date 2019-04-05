@@ -4,14 +4,55 @@ const db = require('../db')
 
 const router = express.Router()
 
+let quizAnswers = {
+  'q1': 1,
+  'q2': 2,
+  'q3': 4,
+  'q4': 4,
+  'q5': 4
+}
+
+// router.get('/jendestest', (req, res) => {
+//   db.getUserDino(quizAnswers)
+//     .then(dinosaur => {
+//       console.log("Matching dino info: ", dinosaur)
+//       res.render('partials/jendestest', { dinosaur: dinosaur })
+//     })
+//     .catch(err => {
+//       res.status(500).send('DATABASE ERROR: ' + err.message)
+//     })
+// })
+
+// router.get('/results', (req, res) => {
+//   res.render('partials/resultspage', { dinosaur: dinosaur })
+// })
+
+router.get('/resultspage', (req, res) => {
+  res.render('partials/resultspage')
+})
+
 router.get('/', (req, res) => {
-  db.getUsers()
-    .then(users => {
-      res.render('index', {users: users})
+  res.render('partials/quizpage')
+})
+
+router.post('/', (req, res) => {
+  //get quizAnswers from POST form
+  console.log("Information from form: ", req.body)
+
+  let quizAnswers = req.body
+
+  db.getUserDino(quizAnswers)
+    .then(dinosaur => {
+      console.log("Matching dino info: ", dinosaur)
+      res.render('partials/resultspage', { dinosaur: dinosaur })
     })
     .catch(err => {
       res.status(500).send('DATABASE ERROR: ' + err.message)
     })
 })
+
+
+
+
 
 module.exports = router

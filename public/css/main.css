@@ -1,0 +1,41 @@
+@import url(//db.onlinewebfonts.com/c/05289e866fe7e1e99d27a7a31f8d3b66?family=Trattatello);
+.top {
+  padding: 15%;
+  background-image: url('/images/alt-bckgrnd.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+
+}
+
+body {
+  font-family: 'Helvetica', san-serif;
+}
+.question{
+  margin: 100px;
+}
+
+h1{
+  font-family: Trattatello;
+  font-size: 5em;
+  letter-spacing: 0.2em;
+  padding: 0px;
+  margin: 0px;
+  text-align: center
+}
+#art {
+  text-align: center;
+}
+#art img {
+  margin: 40px;
+  width: 20%;
+}
+.button{
+  display: inline-block;
+  background-color:lightblue;
+  padding: 30px;
+  width: 15%;
+  text-align: center;
+  font-size: em;
+  color: white;
+}
