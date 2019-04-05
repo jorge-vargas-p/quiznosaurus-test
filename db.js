@@ -3,19 +3,79 @@ const config = require('./knexfile')[environment]
 const database = require('knex')(config)
 
 function getDinosaurs(db = database) {
-  console.log("All dinosaurs: " + db('dinosaurs').select())
   return db('dinosaurs').select()
 }
 
 function getDinosaur(id, db = database) {
-  console.log("The dinosaur we want: ", db('dinosaurs').where('id', id).first())
   return db('dinosaurs').where('id', id).first()
 }
 
-getDinosaurs()
-getDinosaur(1)
+let quizAnswers = {
+  'q1': 1,
+  'q2': 2,
+  'q3': 4,
+  'q4': 4,
+  'q5': 4
+}
+
+function getUserDino(quizAnswers, db = database) {
+  let answerCounter = {
+    'Tyrannosaurus Rex': 0,
+    'Triceratops': 0,
+    'Brachiosaurus': 0,
+    'Barney': 0
+  }
+
+  //turn quizAnswers into an array 
+  let quizAnswersArr = Object.keys(quizAnswers).map(function (key) {
+    return quizAnswers[key];
+  });
+
+  console.log("quizAnswers: ", quizAnswers, " is a ", typeof quizAnswers)
+  console.log("quizAnswersArr: ", quizAnswersArr, " is a ", typeof quizAnswersArr)
+
+  //count up the answers or each dino
+  quizAnswersArr.forEach(answer => {
+    if (answer == 1) {
+      answerCounter['Tyrannosaurus Rex']++
+    }
+    if (answer == 2) {
+      answerCounter['Triceratops']++
+    }
+    if (answer == 3) {
+      answerCounter['Brachiosaurus']++
+    }
+    if (answer == 4) {
+      answerCounter['Barney']++
+    }
+  })
+
+  console.log("answerCounter: ", answerCounter, " is a ", typeof answerCounter)
+
+  //convert answerCounter into array
+  let answerCounterArr = Object.keys(answerCounter).map(function (key) {
+    return answerCounter[key];
+  });
+  console.log("answerCounterArr: ", answerCounterArr, " is a ", typeof answerCounterArr)
+
+  //find the highest answer counter
+  let highestAnswerTotal = Math.max.apply(null, answerCounterArr)
+  console.log("The highest answer counter is: ", highestAnswerTotal)
+
+  //find the dino with most answers
+  let matchingDino = Object.keys(answerCounter).find(key => answerCounter[key] === highestAnswerTotal);
+
+  console.log("The matching dinosaur is : ", matchingDino)
+
+  //join the dinosaur and facts tables by matching dino
+
+
+}
+
+getUserDino(quizAnswers)
 
 module.exports = {
   getDinosaurs,
-  getDinosaur
+  getDinosaur,
+  getUserDino
 }
