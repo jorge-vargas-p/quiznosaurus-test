@@ -27,21 +27,31 @@ let quizAnswers = {
 //   res.render('partials/resultspage', { dinosaur: dinosaur })
 // })
 
+router.get('/resultspage', (req, res) => {
+  res.render('partials/resultspage')
+})
+
 router.get('/', (req, res) => {
   res.render('partials/quizpage')
 })
 
 router.post('/', (req, res) => {
   //get quizAnswers from POST form
+  console.log("Information from form: ", req.body)
+
+  let quizAnswers = req.body
+
   db.getUserDino(quizAnswers)
     .then(dinosaur => {
       console.log("Matching dino info: ", dinosaur)
-      res.redirect('partials/resultspage', { dinosaur: dinosaur })
+      res.render('partials/resultspage', { dinosaur: dinosaur })
     })
     .catch(err => {
       res.status(500).send('DATABASE ERROR: ' + err.message)
     })
 })
+
+
 
 
 

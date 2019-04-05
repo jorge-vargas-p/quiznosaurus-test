@@ -31,8 +31,8 @@ function getUserDino(quizAnswers, db = database) {
     return quizAnswers[key];
   });
 
-  console.log("quizAnswers: ", quizAnswers, " is a ", typeof quizAnswers)
-  console.log("quizAnswersArr: ", quizAnswersArr, " is a ", typeof quizAnswersArr)
+  // console.log("quizAnswers: ", quizAnswers, " is a ", typeof quizAnswers)
+  // console.log("quizAnswersArr: ", quizAnswersArr, " is a ", typeof quizAnswersArr)
 
   //count up the answers or each dino
   quizAnswersArr.forEach(answer => {
@@ -50,22 +50,22 @@ function getUserDino(quizAnswers, db = database) {
     }
   })
 
-  console.log("answerCounter: ", answerCounter, " is a ", typeof answerCounter)
+  // console.log("answerCounter: ", answerCounter, " is a ", typeof answerCounter)
 
   //convert answerCounter into array
   let answerCounterArr = Object.keys(answerCounter).map(function (key) {
     return answerCounter[key];
   });
-  console.log("answerCounterArr: ", answerCounterArr, " is a ", typeof answerCounterArr)
+  // console.log("answerCounterArr: ", answerCounterArr, " is a ", typeof answerCounterArr)
 
   //find the highest answer counter
   let highestAnswerTotal = Math.max.apply(null, answerCounterArr)
-  console.log("The highest answer counter is: ", highestAnswerTotal)
+  // console.log("The highest answer counter is: ", highestAnswerTotal)
 
   //find the dino with most answers
   let matchingDino = Object.keys(answerCounter).find(key => answerCounter[key] === highestAnswerTotal);
 
-  console.log("The matching dinosaur is : ", matchingDino)
+  // console.log("The matching dinosaur is : ", matchingDino)
 
   //get facts by dinosaur
   return db('facts')
