@@ -12,25 +12,37 @@ let quizAnswers = {
   'q5': 4
 }
 
-router.get('/jendestest', (req, res) => {
+// router.get('/jendestest', (req, res) => {
+//   db.getUserDino(quizAnswers)
+//     .then(dinosaur => {
+//       console.log("Matching dino info: ", dinosaur)
+//       res.render('partials/jendestest', { dinosaur: dinosaur })
+//     })
+//     .catch(err => {
+//       res.status(500).send('DATABASE ERROR: ' + err.message)
+//     })
+// })
+
+// router.get('/results', (req, res) => {
+//   res.render('partials/resultspage', { dinosaur: dinosaur })
+// })
+
+router.get('/', (req, res) => {
+  res.render('partials/quizpage')
+})
+
+router.post('/', (req, res) => {
+  //get quizAnswers from POST form
   db.getUserDino(quizAnswers)
     .then(dinosaur => {
       console.log("Matching dino info: ", dinosaur)
-      res.render('partials/jendestest', { dinosaur: dinosaur })
+      res.redirect('partials/resultspage', { dinosaur: dinosaur })
     })
     .catch(err => {
       res.status(500).send('DATABASE ERROR: ' + err.message)
     })
 })
 
-router.get('/', (req, res) => {
-  db.getUsers()
-    .then(users => {
-      res.render('index', { users: users })
-    })
-    .catch(err => {
-      res.status(500).send('DATABASE ERROR: ' + err.message)
-    })
-})
+
 
 module.exports = router
