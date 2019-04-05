@@ -30,3 +30,14 @@ test('getUser gets a single user', () => {
     })
     .catch(err => expect(err).toBeNull())
 })
+
+test('gets the right dinosaur based on quiz answers', () => {
+  const expected = 'Barney'
+  return db.getUser(99901, testDb)
+    .then(user => {
+      const actual = user.name
+      expect(actual).toBe(expected)
+    })
+    .catch(err => expect(err).toBeNull())
+})
+
