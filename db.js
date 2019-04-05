@@ -67,8 +67,10 @@ function getUserDino(quizAnswers, db = database) {
 
   console.log("The matching dinosaur is : ", matchingDino)
 
-  //join the dinosaur and facts tables by matching dino
-
+  //get facts by dinosaur
+  return db('facts')
+    .join('dinosaurs', 'facts.id', '=', 'dinosaurs.facts_id')
+    .where('dinosaurs.name', '=', matchingDino)
 
 }
 
